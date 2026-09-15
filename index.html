@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Casa Vinte e Um | Flores Prensadas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Lato:wght@300;400;700&family=Cardo:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAFAF7;
+      --sand: #F0EBE1;
+      --beige: #E8E0D0;
+      --forest: #3D4A3A;
+      --forest-light: #5A6B57;
+      --gold: #C4A882;
+      --gold-light: #D4BC9A;
+      --text-dark: #2C2C2C;
+      --text-mid: #5C5C5C;
+      --text-light: #8C8C8C;
+      --white: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── PAGES ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,250,247,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--beige);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--forest);
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--forest);
+      border-bottom-color: var(--gold);
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--forest);
+      transition: 0.3s;
+    }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 70px; left: 0; right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--beige);
+      z-index: 99;
+      padding: 1.5rem 5%;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .nav-mobile.open { display: flex; }
+
+    .nav-mobile a {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      text-decoration: none;
+      cursor: pointer;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--beige);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding-top: 70px;
+      position: relative;
+      height: 92vh;
+      min-height: 580px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #3D4A3A 0%, #5A6B57 40%, #7A8C77 70%, #A0B09D 100%);
+    }
+
+    /* SVG botanical pattern */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Ccircle cx='80' cy='80' r='3' fill='%23fff'/%3E%3Ccircle cx='120' cy='60' r='2' fill='%23fff'/%3E%3Ccircle cx='60' cy='120' r='2.5' fill='%23fff'/%3E%3Cellipse cx='100' cy='100' rx='40' ry='15' fill='none' stroke='%23fff' stroke-width='0.8' transform='rotate(30 100 100)'/%3E%3Cellipse cx='300' cy='200' rx='50' ry='18' fill='none' stroke='%23fff' stroke-width='0.8' transform='rotate(-20 300 200)'/%3E%3Ccircle cx='320' cy='80' r='4' fill='%23fff'/%3E%3Ccircle cx='200' cy='300' r='3' fill='%23fff'/%3E%3Cellipse cx='150' cy='280' rx='35' ry='12' fill='none' stroke='%23fff' stroke-width='0.8' transform='rotate(45 150 280)'/%3E%3C/svg%3E");
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(250,250,247,0.3) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      animation: fadeUp 1.2s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .hero-sub {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 400px;
+      margin: 0 auto 2.2rem;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      padding: 0.85rem 2rem;
+      transition: all 0.25s;
+      background: none;
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--forest);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.5);
+      color: var(--white);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .btn-forest {
+      background: #3C4E3E;
+      color: var(--white);
+    }
+
+    .btn-forest:hover {
+      background: #4D604D;
+    }
+
+    .btn-gold {
+      background: none;
+      color: var(--forest);
+      border: 1px solid var(--gold);
+      letter-spacing: 0.12em;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 5%; }
+
+    .section-narrow { max-width: 780px; margin: 0 auto; }
+    .section-wide { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 400;
+      color: var(--forest);
+      line-height: 1.2;
+    }
+
+    .section-title em {
+      font-style: italic;
+    }
+
+    .section-body {
+      color: var(--text-mid);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-top: 0.8rem;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+
+    /* ── HOME PAGE ── */
+    .home-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 5rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .home-intro-img {
+      position: relative;
+    }
+
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--beige);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .img-placeholder svg {
+      position: absolute;
+      opacity: 0.15;
+    }
+
+    /* botanical placeholder art */
+    .img-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--sand) 0%, var(--beige) 100%);
+    }
+
+    .img-placeholder-label {
+      position: relative;
+      z-index: 1;
+      font-size: 0.7rem;
+      color: var(--gold);
+    }
+
+    /* ── FEATURES GRID ── */
+    .features {
+      background: var(--sand);
+      padding: 5rem 5%;
+    }
+
+    .features-grid {
+      max-width: 1200px;
+      margin: 3rem auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .feature-card {
+      text-align: center;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 1.2rem;
+      color: var(--gold);
+    }
+
+    .feature-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--forest);
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-text {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── SPLIT SECTIONS ── */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+      max-width: 100%;
+    }
+
+    .split-img {
+      overflow: hidden;
+    }
+
+    .split-img .img-placeholder {
+      height: 100%;
+      min-height: 360px;
+      border-radius: 0;
+    }
+
+    .split-content {
+      padding: 4rem 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .split.reverse .split-content { order: -1; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      background: var(--white);
+      padding: 5rem 5%;
+    }
+
+    .testimonials .section-title { color: var(--forest); }
+
+    .testimonials-grid {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .testimonial {
+      padding: 2rem;
+    }
+
+    .testimonial-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.92rem;
+      font-style: normal;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-author {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    /* ── PRODUCT CARDS (Flores de Casamento) ── */
+    .product-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+      align-items: start;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--beige);
+    }
+
+    .product-card:last-child { border-bottom: none; }
+
+    .product-card .img-placeholder {
+      aspect-ratio: 3/4;
+      border-radius: 2px;
+    }
+
+    .product-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--forest);
+      margin-bottom: 1rem;
+    }
+
+    .product-card-desc {
+      color: var(--text-mid);
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-sizes {
+      margin-bottom: 1.5rem;
+    }
+
+    .product-sizes-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-size-row {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      padding: 0.25rem 0;
+      border-bottom: 1px solid var(--beige);
+    }
+
+    .price {
+      color: var(--forest);
+      font-weight: 400;
+    }
+
+    /* ── GALLERY GRID ── */
+    .gallery-grid {
+      columns: 3;
+      column-gap: 1rem;
+      max-width: 1100px;
+      margin: 3rem auto 0;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+    }
+
+    .gallery-item .img-placeholder {
+      border-radius: 2px;
+    }
+
+    .gallery-item .img-placeholder:nth-child(odd) {
+      aspect-ratio: 3/4;
+    }
+
+    .gallery-caption {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      color: var(--text-light);
+      letter-spacing: 0.06em;
+      padding: 0.4rem 0;
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      max-width: 720px;
+      margin: 2rem auto 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--beige);
+    }
+
+    .faq-q {
+      padding: 1.3rem 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--forest);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-q .faq-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--gold);
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      display: none;
+      padding-bottom: 1.3rem;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      font-weight: 300;
+      line-height: 1.8;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .faq-item.open .faq-a { display: block; }
+
+    .faq-category {
+      font-family: 'Cardo', serif;
+      font-size: 1.4rem;
+      color: var(--forest);
+      margin: 3rem 0 0.5rem;
+      font-style: normal;
+    }
+
+    /* ── SOBRE ── */
+    .sobre-intro {
+      max-width: 560px;
+    }
+
+    .sobre-script {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--forest);
+      line-height: 1;
+      margin-bottom: 2rem;
+    }
+
+    .sobre-photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    /* ── INFO SECTION (flores casamento page) ── */
+    .info-box {
+      background: var(--sand);
+      border-left: 3px solid var(--gold);
+      padding: 1.5rem 2rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    .info-box ul {
+      padding-left: 1.2rem;
+    }
+
+    .info-box ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── CONTACT BANNER ── */
+    .contact-banner {
+      background: var(--forest);
+      padding: 4rem 5%;
+      text-align: center;
+    }
+
+    .contact-banner .section-title { color: var(--white); margin-bottom: 1rem; }
+    .contact-banner .section-body { color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 2rem; }
+
+    .contact-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .contact-link {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--gold-light); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest);
+      color: rgba(255,255,255,0.6);
+      padding: 2.5rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-icons a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+
+    .footer-icons a:hover { color: var(--gold-light); }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding-top: 70px;
+      background: var(--white);
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--beige);
+    }
+
+    .page-header-inner {
+      padding: 3rem 5% 0;
+    }
+
+    .page-header-hero {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .page-header-hero .img-placeholder {
+      height: 100%;
+      border-radius: 0;
+    }
+
+    /* ── LOJA ── */
+    .loja-intro {
+      background: var(--sand);
+      padding: 2rem 5%;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      border-bottom: 1px solid var(--beige);
+    }
+
+    /* ── PERSONALIZADAS ── */
+    .custom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 3rem auto;
+    }
+
+    .custom-grid .img-placeholder {
+      aspect-ratio: 1;
+    }
+
+    /* ── ANIMATIONS ── */
+    #highlights-track::-webkit-scrollbar { display: none; }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .home-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .services-grid { grid-template-columns: 1fr !important; }
+      .features-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .split { grid-template-columns: 1fr; }
+      .split.reverse .split-content { order: 0; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .product-card { grid-template-columns: 1fr; }
+      .flores-adequadas { grid-template-columns: 1fr !important; }
+      .gallery-grid { columns: 2; }
+      .sobre-photos { grid-template-columns: 1fr 1fr; }
+      .sobre-main-grid { grid-template-columns: 1fr !important; }
+      .sobre-big-photos { grid-template-columns: 1fr 1fr; }
+      .custom-grid { grid-template-columns: 1fr 1fr; }
+      #faq-gallery-strip { grid-template-columns: repeat(3, 1fr) !important; }
+      footer { flex-direction: column; text-align: center; }
+      footer[style*="grid-template-columns:repeat(4"] { grid-template-columns: 1fr 1fr !important; text-align:left !important; }
+      .footer-links { justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid { columns: 1; }
+      .sobre-photos { grid-template-columns: 1fr; }
+      .sobre-big-photos { grid-template-columns: 1fr; }
+      .custom-grid { grid-template-columns: 1fr; }
+      #faq-gallery-strip { grid-template-columns: repeat(2, 1fr) !important; }
+      .hero-title { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="main-nav">
+  <div class="nav-logo" onclick="showPage('home')">Casa Vinte e Um</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('loja')" id="nav-loja">Loja</a></li>
+    <li><a onclick="showPage('casamento')" id="nav-casamento">Flores de Casamento</a></li>
+    <li><a onclick="showPage('galeria')" id="nav-galeria">Galeria</a></li>
+    <li><a onclick="showPage('personalizadas')" id="nav-personalizadas">Peças Personalizadas</a></li>
+    <li><a onclick="showPage('faq')" id="nav-faq">FAQ</a></li>
+    <li><a onclick="showPage('sobre')" id="nav-sobre">Sobre</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <a onclick="showPage('loja');toggleMenu()">Loja</a>
+  <a onclick="showPage('casamento');toggleMenu()">Flores de Casamento</a>
+  <a onclick="showPage('galeria');toggleMenu()">Galeria</a>
+  <a onclick="showPage('personalizadas');toggleMenu()">Peças Personalizadas</a>
+  <a onclick="showPage('faq');toggleMenu()">FAQ</a>
+  <a onclick="showPage('sobre');toggleMenu()">Sobre</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: HOME
+═══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <div class="hero" style="display:block;">
+    <video autoplay muted loop playsinline style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+      <source src="images/video/video-abertura.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Frase de destaque -->
+  <section style="text-align:center; padding:4rem 5% 2rem;">
+    <p class="section-body" style="max-width:600px; margin:0 auto; font-style:italic; color:var(--text-light);">[Espaço reservado para frase]</p>
+  </section>
+
+  <!-- Três Serviços -->
+  <section style="padding-top:1rem;">
+    <div class="services-grid fade-in" style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(3, 1fr); gap:2rem;">
+      <div style="cursor:pointer;" onclick="showPage('casamento')">
+        <div class="img-placeholder" style="aspect-ratio:3/4;">
+          <img src="images/casamento/bouquet-linho.jpg" alt="Flores de Casamento" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <h3 class="feature-title" style="text-align:center; margin-top:1.2rem; color:#A97077;">Flores de Casamento</h3>
+      </div>
+      <div style="cursor:pointer;" onclick="showPage('personalizadas')">
+        <div class="img-placeholder" style="aspect-ratio:3/4;">
+          <img src="images/personalizadas/peca-1.jpg" alt="Peças Personalizadas" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <h3 class="feature-title" style="text-align:center; margin-top:1.2rem; color:#D4A491;">Peças Personalizadas</h3>
+      </div>
+      <div style="cursor:pointer;" onclick="showPage('loja')">
+        <div class="img-placeholder" style="aspect-ratio:3/4; background:linear-gradient(145deg, #D4C5A9, #B8A88A);">
+          <span class="img-placeholder-label">Loja Online</span>
+        </div>
+        <h3 class="feature-title" style="text-align:center; margin-top:1.2rem; color:#898254;">Loja Online</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Carousel -->
+  <div class="testimonials fade-in">
+    <div style="text-align:center;">
+      <h2 class="section-title" style="color:var(--forest); font-style:normal; font-family:'Cardo', serif;">Cartas de amor</h2>
+    </div>
+    <div style="max-width:640px; margin:2.5rem auto 0; position:relative; display:flex; align-items:center; gap:1.5rem;">
+      <button onclick="changeTestimonial(-1)" aria-label="Testemunho anterior" style="background:none; border:1px solid var(--beige); color:var(--forest); width:40px; height:40px; border-radius:50%; cursor:pointer; flex-shrink:0; font-size:1.1rem; transition:background 0.2s;" onmouseover="this.style.background='var(--sand)'" onmouseout="this.style.background='none'">‹</button>
+      <div class="testimonial" style="flex:1; text-align:center; min-height:160px; display:flex; flex-direction:column; justify-content:center;">
+        <p class="testimonial-text" id="testimonial-text" style="color:#000000;"></p>
+        <span class="testimonial-author" id="testimonial-author" style="color:var(--gold);"></span>
+      </div>
+      <button onclick="changeTestimonial(1)" aria-label="Próximo testemunho" style="background:none; border:1px solid var(--beige); color:var(--forest); width:40px; height:40px; border-radius:50%; cursor:pointer; flex-shrink:0; font-size:1.1rem; transition:background 0.2s;" onmouseover="this.style.background='var(--sand)'" onmouseout="this.style.background='none'">›</button>
+    </div>
+    <div style="display:flex; justify-content:center; gap:0.5rem; margin-top:1.5rem;" id="testimonial-dots"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; text-align:left; padding:3rem 5%;">
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Sobre</h4>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Informação</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a onclick="showPage('termos')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Termos e Condições</a>
+        <a onclick="showPage('privacidade')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Privacidade</a>
+        <a onclick="showPage('faq')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Envios</a>
+        <a onclick="showPage('sobre')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Sobre Nós</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Redes Sociais</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="https://www.instagram.com/casavinteumfloresprensadas" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">Instagram</a>
+        <a href="https://wa.me/351910925135" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Contactos</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="mailto:infocasavinteeum@gmail.com" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">infocasavinteeum@gmail.com</a>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">910 925 135</span>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">Santo Tirso, Porto</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: FLORES DE CASAMENTO
+═══════════════════════════════════════════ -->
+<div class="page" id="page-casamento">
+  <div class="page-header">
+    <div class="page-header-hero">
+      <div class="img-placeholder" style="height:220px; border-radius:0;">
+        <img src="images/casamento/capa-flores-casamento.jpg" alt="Flores de Casamento" style="width:100%; height:100%; object-fit:cover; position:relative; z-index:1;">
+      </div>
+    </div>
+    <div class="page-header-inner" style="text-align:left; display:flex; flex-direction:column; align-items:center; background:#FFFFFF;">
+      <h1 class="section-title" style="margin-top:2rem; font-family:'Cardo', serif; max-width:680px; width:100%; color:#A97077;">Preservação de Flores de Casamento</h1>
+      <p class="section-body" style="max-width:680px; width:100%; margin-top:1rem; font-family:'Montserrat', sans-serif;">Utilizo diferentes métodos para prensar e preservar o teu bouquet. Criando obras de arte emolduradas com as flores prensadas desde a estética clássica, delicada e minimalista até algo moderno e contemporâneo.<br>O resultado final será sempre uma peça única, pensada para recordares o grande dia para sempre.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="product-cards" id="precos">
+
+      <div class="product-card fade-in">
+        <div class="img-placeholder" style="aspect-ratio:3/4;">
+          <img src="images/casamento/bouquet-aguarela-branco.jpg" alt="Bouquet em Papel de Aguarela" style="width:100%; height:100%; object-fit:cover; position:relative; z-index:1;">
+        </div>
+        <div style="background:rgba(249,247,240,0.4); padding:1.5rem;">
+          <h2 class="product-card-name" style="font-weight:700; color:#A97077;">Bouquet em Papel de Aguarela</h2>
+          <p class="product-card-desc">Seleciono as flores do teu bouquet e componho-as com todo o cuidado numa moldura de madeira artesanal, disponível em fundo branco ou preto.<br><br>A opção ideal para <em>fine line art</em> do teu monograma.</p>
+          <div class="product-sizes">
+            <p class="product-sizes-title">Papel de Aguarela Branco</p>
+            <div class="product-size-row">20×20cm <span class="price">— €73,00</span></div>
+            <div class="product-size-row">32×24cm <span class="price">— €145,00</span></div>
+            <div class="product-size-row">40×30cm <span class="price">— €180,00</span></div>
+            <div class="product-size-row">50×40cm <span class="price">— €213,00</span></div>
+            <div class="product-size-row">70×50cm <span class="price">— €264,00</span></div>
+          </div>
+          <div class="product-sizes" style="margin-top:1.2rem;">
+            <p class="product-sizes-title">Papel de Aguarela Preto</p>
+            <div class="product-size-row">20×20cm <span class="price">— €73,00</span></div>
+            <div class="product-size-row">20×30cm <span class="price">— €145,00</span></div>
+            <div class="product-size-row">40×30cm <span class="price">— €180,00</span></div>
+          </div>
+          <a href="https://wa.me/351910925135?text=Ol%C3%A1%21%20Gostaria%20de%20encomendar%20o%20Bouquet%20em%20Papel%20de%20Aguarela" target="_blank" class="btn btn-forest" style="font-family:'Montserrat', sans-serif; margin-top:1rem;">Encomendar</a>
+        </div>
+      </div>
+
+      <div class="product-card fade-in">
+        <div class="img-placeholder" style="aspect-ratio:3/4;">
+          <img src="images/casamento/bouquet-linho.jpg" alt="Bouquet de Casamento em Linho" style="width:100%; height:100%; object-fit:cover; position:relative; z-index:1;">
+        </div>
+        <div style="background:rgba(249,247,240,0.4); padding:1.5rem;">
+          <h2 class="product-card-name" style="font-weight:700; color:#A97077;">Bouquet de Casamento em Linho</h2>
+          <p class="product-card-desc">Seleciono as flores do teu bouquet e componho-as com todo o cuidado numa moldura de madeira artesanal, sobre uma base de linho branco.</p>
+          <div class="product-sizes">
+            <p class="product-sizes-title">Tamanhos disponíveis</p>
+            <div class="product-size-row">20×20cm <span class="price">— €78,00</span></div>
+            <div class="product-size-row">32×24cm <span class="price">— €158,00</span></div>
+            <div class="product-size-row">40×30cm <span class="price">— €192,00</span></div>
+            <div class="product-size-row">50×40cm <span class="price">— €225,00</span></div>
+            <div class="product-size-row">70×50cm <span class="price">— €270,00</span></div>
+          </div>
+          <a href="https://wa.me/351910925135?text=Ol%C3%A1%21%20Gostaria%20de%20encomendar%20o%20Bouquet%20de%20Casamento%20em%20Linho" target="_blank" class="btn btn-forest" style="font-family:'Montserrat', sans-serif;">Encomendar</a>
+        </div>
+      </div>
+
+      <div class="product-card fade-in">
+        <div class="img-placeholder" style="aspect-ratio:3/4;">
+          <img src="images/casamento/bouquet-vidro.jpg" alt="Bouquet de Casamento em Vidro" style="width:100%; height:100%; object-fit:cover; position:relative; z-index:1;">
+        </div>
+        <div style="background:rgba(249,247,240,0.4); padding:1.5rem;">
+          <h2 class="product-card-name" style="font-weight:700; color:#A97077;">Bouquet de Casamento em Vidro</h2>
+          <p class="product-card-desc">Seleciono as flores do teu bouquet e componho-as com todo o cuidado numa moldura de madeira artesanal com vidro duplo.<br><br>A opção ideal se quiseres incorporar uma fotografia do casal, os votos de casamento ou o convite.</p>
+          <div class="product-sizes">
+            <p class="product-sizes-title">Tamanhos disponíveis</p>
+            <div class="product-size-row">20×20cm <span class="price">— €88,00</span></div>
+            <div class="product-size-row">30×20cm <span class="price">— €166,00</span></div>
+            <div class="product-size-row">40×30cm <span class="price">— €202,00</span></div>
+            <div class="product-size-row">50×40cm <span class="price">— €240,00</span></div>
+            <div class="product-size-row">70×50cm <span class="price">— €290,00</span></div>
+          </div>
+          <a href="https://wa.me/351910925135?text=Ol%C3%A1%21%20Gostaria%20de%20encomendar%20o%20Bouquet%20de%20Casamento%20em%20Vidro" target="_blank" class="btn btn-forest" style="font-family:'Montserrat', sans-serif;">Encomendar</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="text-align:center; font-size:0.78rem; color:var(--text-light); margin-top:0.75rem; font-family:'Montserrat', sans-serif;">Os valores apresentados estão isentos de IVA, ao abrigo do artigo 53.º do CIVA.</p>
+  </section>
+
+  <!-- Flores adequadas para prensar -->
+  <section style="padding-top:0;">
+    <div class="flores-adequadas" style="max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1.2fr 1fr; gap:3rem; align-items:start;">
+      <div style="text-align:left;">
+        <h2 class="section-title" style="font-family:'Cardo', serif; color:#A97077;">Flores adequadas para prensar</h2>
+        <p class="section-body" style="font-family:'Montserrat', sans-serif; font-size:0.88rem;">É sempre surpreendente descobrir o que se esconde nas camadas de papel de uma prensa de flores. Muitas vezes, são as flores mais inesperadas que dão origem às composições mais belas. Ainda assim, sei por experiência que nem todas as espécies se adaptam bem a este processo.<br><br>Flores de pétalas finas menos complexas e caules delicados são as que melhor resultam: Ammi majus, tipos de gramíneas, Ervilhas-de-cheiro, Jasmim, clemátis, centáureas e delfínios, são algumas das minhas escolhas para trazer leveza e dinamismo a cada composição.<br><br>As flores mais carnudas e suculentas, como peónias, rosas, tulipas, antúrios ou callas, proteas, devido à sua espessura e elevado teor de água, são flores mais complexas de prensar, com maior probabilidade de alteração de cor ou de o resultado não corresponder totalmente ao esperado.</p>
+      </div>
+      <div class="img-placeholder" style="aspect-ratio:3/4;">
+        <img src="images/jardim/jardim-5.jpg" alt="Flores adequadas para prensar" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+    </div>
+  </section>
+
+  <!-- Processo -->
+  <section>
+    <div class="flores-adequadas" style="max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1fr 1.2fr; gap:3rem; align-items:start;">
+      <div class="img-placeholder" style="aspect-ratio:3/4;">
+        <img src="images/jardim/jardim-7.jpg" alt="Processo de Reserva" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div style="text-align:left; background:rgba(203,181,129,0.2); padding:2rem;">
+        <h2 class="section-title" style="color:#A97077;">Processo de <em style="font-style:normal;">Reserva</em></h2>
+        <p class="section-body" style="font-family:'Montserrat', sans-serif; margin-top:1.5rem; font-size:0.88rem;">Entra em contacto comigo por email ou WhatsApp para verificarmos a disponibilidade para a data do teu casamento. Tenho vagas disponíveis de <strong>março a outubro</strong>, e recomendo reservar com <strong>3 a 6 meses de antecedência</strong>. Depois de conversarmos sobre as tuas preferências, a reserva fica confirmada com um <strong>sinal de 50%</strong>.<br><br>Após o grande dia, envia-me as flores do teu bouquet ainda frescas, com todas as instruções que te vou partilhar. A tua peça fica pronta num prazo de <strong>4 a 6 meses</strong> e é entregue com todo o cuidado, pronta para guardar essa memória para sempre.</p>
+        <div style="margin-top:2rem;">
+          <a href="https://wa.me/351910925135?text=Ol%C3%A1%21%20Gostaria%20de%20reservar%20uma%20data" target="_blank" class="btn btn-forest" style="font-family:'Montserrat', sans-serif;">Reservar Data</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cuidados e Transporte -->
+  <section style="padding-top:0;">
+    <div class="flores-adequadas" style="max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1.2fr 1fr; gap:3rem; align-items:start;">
+      <div style="text-align:left;">
+        <h2 class="section-title" style="font-family:'Cardo', serif; color:#A97077;">Cuidados e Transporte das Flores</h2>
+        <p class="section-body" style="font-family:'Montserrat', sans-serif; font-size:0.88rem;">Depois do grande dia, coloca as flores do teu bouquet num jarro com água limpa e guarda-as num local fresco, para se manterem frescas até as enviares. Ao trazê-las até mim, mantém-nas na vertical sempre que possível, idealmente num balde ou jarro com água, para evitar danos nas pétalas.<br><br>A entrega pode ser feita em mãos, em Santo Tirso (Sequeiró), ou por correio. Assim que a tua reserva ficar confirmada, envio-te todas as indicações detalhadas sobre entrega e envio.</p>
+      </div>
+      <div class="img-placeholder" style="aspect-ratio:3/4;">
+        <img src="images/jardim/jardim-9.jpg" alt="Cuidados e Transporte" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+    </div>
+  </section>
+
+  <footer style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; text-align:left; padding:3rem 5%;">
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Sobre</h4>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Informação</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a onclick="showPage('termos')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Termos e Condições</a>
+        <a onclick="showPage('privacidade')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Privacidade</a>
+        <a onclick="showPage('faq')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Envios</a>
+        <a onclick="showPage('sobre')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Sobre Nós</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Redes Sociais</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="https://www.instagram.com/casavinteumfloresprensadas" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">Instagram</a>
+        <a href="https://wa.me/351910925135" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Contactos</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="mailto:infocasavinteeum@gmail.com" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">infocasavinteeum@gmail.com</a>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">910 925 135</span>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">Santo Tirso, Porto</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: PEÇAS PERSONALIZADAS
+═══════════════════════════════════════════ -->
+<div class="page" id="page-personalizadas">
+  <div style="padding-top:70px;">
+    <div style="padding: 3rem 5% 2rem; text-align:left;">
+      <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.2rem); color:#D4A491; font-family:'Cardo', serif;">Peças Personalizadas</h1>
+    </div>
+  </div>
+
+  <section>
+    <div class="custom-grid fade-in">
+      <div class="img-placeholder"><img src="images/personalizadas/peca-1.jpg" alt="Peça personalizada" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div class="img-placeholder"><img src="images/personalizadas/peca-2.jpg" alt="Peça personalizada" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div class="img-placeholder"><img src="images/personalizadas/peca-3.jpg" alt="Peça personalizada" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div class="img-placeholder"><img src="images/personalizadas/peca-4.jpg" alt="Peça personalizada" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div class="img-placeholder"><img src="images/personalizadas/peca-5.jpg" alt="Peça personalizada" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div class="img-placeholder"><img src="images/personalizadas/peca-6.jpg" alt="Peça personalizada" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div class="img-placeholder"><img src="images/personalizadas/peca-7.jpg" alt="Peça personalizada" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div class="img-placeholder"><img src="images/personalizadas/peca-8.jpg" alt="Peça personalizada" style="width:100%; height:100%; object-fit:cover;"></div>
+    </div>
+  </section>
+
+  <section style="background:var(--sand); text-align:center;">
+    <div style="max-width:640px; margin:0 auto;">
+      <p class="section-body" style="font-size:1rem;">As flores prensadas são uma forma delicada e elegante de trazer a natureza para qualquer ambiente. Seleciono e prenso flores e plantas cultivadas por mim para criar peças de arte únicas para o seu espaço. Trabalho numa grande variedade de projetos, desde obras simples com uma única espécie e coleções de herbário até composições complexas com múltiplas espécies.</p>
+      <div style="margin:2.5rem 0 1rem;">
+        <p class="section-body">Se desejas criar uma peça personalizada para a tua casa ou para oferecer, contacta por WhatsApp ou email.</p>
+      </div>
+      <a href="https://wa.me/351910925135" target="_blank" class="btn btn-forest">Email ou WhatsApp</a>
+    </div>
+  </section>
+
+  <footer style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; text-align:left; padding:3rem 5%;">
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Sobre</h4>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Informação</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a onclick="showPage('termos')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Termos e Condições</a>
+        <a onclick="showPage('privacidade')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Privacidade</a>
+        <a onclick="showPage('faq')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Envios</a>
+        <a onclick="showPage('sobre')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Sobre Nós</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Redes Sociais</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="https://www.instagram.com/casavinteumfloresprensadas" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">Instagram</a>
+        <a href="https://wa.me/351910925135" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Contactos</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="mailto:infocasavinteeum@gmail.com" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">infocasavinteeum@gmail.com</a>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">910 925 135</span>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">Santo Tirso, Porto</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: GALERIA
+═══════════════════════════════════════════ -->
+<div class="page" id="page-galeria">
+  <div style="padding-top:70px;">
+    <div style="padding:3rem 5% 2rem;">
+      <h1 class="section-title" style="font-family:'Cardo', serif;">Galeria</h1>
+    </div>
+    <section style="padding-top:0;">
+      <div class="gallery-grid fade-in">
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/galeria/aguarela-monograma-25x34.jpg" alt="Monograma Papel de Aguarela" style="width:100%; display:block;">
+          <p class="gallery-caption">Monograma Papel de Aguarela · 25×34cm</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/galeria/vidro-40x50.jpg" alt="Vidro Duplo" style="width:100%; display:block;">
+          <p class="gallery-caption">Vidro Duplo · 40×50cm</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/galeria/aguarela-30x40-a.jpg" alt="Papel de Aguarela" style="width:100%; display:block;">
+          <p class="gallery-caption">Papel de Aguarela · 30×40cm</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/galeria/vidro-30x40.jpg" alt="Vidro Duplo" style="width:100%; display:block;">
+          <p class="gallery-caption">Vidro Duplo · 30×40cm</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/galeria/vidro-30x20.jpg" alt="Vidro Duplo" style="width:100%; display:block;">
+          <p class="gallery-caption">Vidro Duplo · 30×20cm</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/galeria/linho-20x30.jpg" alt="Linho Branco" style="width:100%; display:block;">
+          <p class="gallery-caption">Linho Branco · 20×30cm</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/galeria/vidro-20x20.jpg" alt="Vidro Duplo" style="width:100%; display:block;">
+          <p class="gallery-caption">Vidro Duplo · 20×20cm</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/galeria/linho-40x30.jpg" alt="Linho Branco" style="width:100%; display:block;">
+          <p class="gallery-caption">Linho Branco · 40×30cm</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/galeria/vidro-50x40.jpg" alt="Vidro Duplo" style="width:100%; display:block;">
+          <p class="gallery-caption">Vidro Duplo · 50×40cm</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/galeria/aguarela-30x40-b.jpg" alt="Papel de Aguarela" style="width:100%; display:block;">
+          <p class="gallery-caption">Papel de Aguarela · Detalhe</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/galeria/galeria-extra-1.jpg" alt="Peça com fotografias" style="width:100%; display:block;">
+          <p class="gallery-caption">Fundo Preto · Com Fotografias</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/casamento/bouquet-extra-1.jpg" alt="Vidro Duplo" style="width:100%; display:block;">
+          <p class="gallery-caption">Vidro Duplo · Detalhe</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/casamento/bouquet-extra-3.jpg" alt="Vidro Duplo" style="width:100%; display:block;">
+          <p class="gallery-caption">Vidro Duplo · Detalhe</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/casamento/bouquet-extra-5.jpg" alt="Peça de casamento" style="width:100%; display:block;">
+          <p class="gallery-caption">Preservação de Bouquet</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/casamento/bouquet-extra-7.jpg" alt="Peça de casamento" style="width:100%; display:block;">
+          <p class="gallery-caption">Preservação de Bouquet</p>
+        </div>
+        <div class="gallery-item" style="cursor:pointer; position:relative;">
+          <div class="img-placeholder" style="aspect-ratio:9/16; background:linear-gradient(135deg,#3D4A3A,#7A8C77);"></div>
+          <div style="position:absolute; top:0; left:0; right:0; height:calc(100% - 1.6rem); display:flex; align-items:center; justify-content:center;">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.3)"/><path d="M10 8l6 4-6 4V8z" fill="white"/></svg>
+          </div>
+          <p class="gallery-caption">A colher as flores</p>
+        </div>
+        <div class="gallery-item" onclick="goToPricing()" style="cursor:pointer;">
+          <img src="images/casamento/bouquet-extra-9.jpg" alt="Peça de casamento" style="width:100%; display:block;">
+          <p class="gallery-caption">Preservação de Bouquet</p>
+        </div>
+        <div class="gallery-item" style="cursor:pointer; position:relative;">
+          <div class="img-placeholder" style="aspect-ratio:9/16; background:linear-gradient(135deg,#5A6B57,#A0B09D);"></div>
+          <div style="position:absolute; top:0; left:0; right:0; height:calc(100% - 1.6rem); display:flex; align-items:center; justify-content:center;">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.3)"/><path d="M10 8l6 4-6 4V8z" fill="white"/></svg>
+          </div>
+          <p class="gallery-caption">A prensar</p>
+        </div>
+        <div class="gallery-item" style="cursor:pointer; position:relative;">
+          <div class="img-placeholder" style="aspect-ratio:9/16; background:linear-gradient(135deg,#7A8C77,#D4C5A9);"></div>
+          <div style="position:absolute; top:0; left:0; right:0; height:calc(100% - 1.6rem); display:flex; align-items:center; justify-content:center;">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.3)"/><path d="M10 8l6 4-6 4V8z" fill="white"/></svg>
+          </div>
+          <p class="gallery-caption">A compor a peça</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; text-align:left; padding:3rem 5%;">
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Sobre</h4>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Informação</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a onclick="showPage('termos')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Termos e Condições</a>
+        <a onclick="showPage('privacidade')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Privacidade</a>
+        <a onclick="showPage('faq')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Envios</a>
+        <a onclick="showPage('sobre')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Sobre Nós</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Redes Sociais</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="https://www.instagram.com/casavinteumfloresprensadas" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">Instagram</a>
+        <a href="https://wa.me/351910925135" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Contactos</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="mailto:infocasavinteeum@gmail.com" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">infocasavinteeum@gmail.com</a>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">910 925 135</span>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">Santo Tirso, Porto</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: FAQ
+═══════════════════════════════════════════ -->
+<div class="page" id="page-faq">
+  <div style="padding-top:70px;">
+    <div class="page-header-hero">
+      <div class="img-placeholder" style="height:200px; border-radius:0; background:linear-gradient(135deg,#5A7A50,#3D5C38);">
+        <span class="img-placeholder-label" style="color:rgba(255,255,255,0.6);">Jardim</span>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div style="max-width:720px; margin:0 auto;">
+      <h1 class="section-title" style="font-family:'Cardo', serif;">Perguntas <em style="font-style:normal;">frequentes</em></h1>
+
+      <p class="faq-category" style="color:#A97077;">Preservação de Flores de Casamento</p>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Como funciona o processo de reserva?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Envia-me uma mensagem por WhatsApp ou redes sociais com a data do teu casamento, e aguarda a confirmação de que há vaga nesse dia. A reserva fica confirmada com um sinal de 50%, pago por MB Way ou transferência bancária, com o comprovativo enviado por email ou WhatsApp no prazo de 48 horas.<br><br>As vagas para casamentos com flores frescas estão disponíveis de março a outubro. Depois do casamento, envias-me as flores do bouquet no prazo máximo de 2 a 3 dias, em mãos (em Santo Tirso) ou por correio, ainda frescas para serem prensadas, e é nesse momento que pagas os restantes 50%.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Quando devo contactar para reservar?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Recomendo que entres em contacto o mais cedo possível, idealmente entre 3 a 6 meses antes do casamento. As vagas são limitadas, aceito apenas 1 a 2 bouquets por semana.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Posso acrescentar elementos extra às minhas peças?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Sim! Podes incluir fotografias, fitas, bordados, rendas, medalhas, o convite ou os votos de casamento.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            E se o meu bouquet tiver poucas flores para o tamanho escolhido?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Podes pedir flores extra à tua florista, ou aproveitar flores da decoração do casamento para complementar a composição.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Em que condições devo manter as minhas flores no casamento e durante o transporte?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Após o casamento, coloca as flores num jarro com água limpa e guarda-as num local fresco, longe do sol direto, para evitar que murchem. Ao transportá-las até mim, mantém-nas na vertical sempre que possível, idealmente num balde ou jarro com água, para evitar danos nas pétalas. Forneço instruções detalhadas assim que a reserva fica confirmada.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Quanto tempo demora a fazer a peça?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">O processo de prensagem e composição demora entre 4 a 6 meses após receber as flores. Este tempo é necessário para garantir que as flores ficam perfeitamente prensadas e a peça fica com a qualidade que procuro.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            O que acontece às flores que sobram?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Tento sempre incluir o máximo de flores possível na tua peça, tendo em conta um design harmonioso. Caso sobrem flores, podes pedir que te sejam entregues; caso contrário, fico com elas em arquivo durante um ano, ao fim do qual são compostadas.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Quanto tempo vai durar o meu bouquet prensado?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">A peça em si dura muitos anos. No entanto, as flores, por serem elementos naturais, podem perder as suas tonalidades originais ao longo do tempo. Aconselho os cuidados básicos: limpeza suave, e reduzir a exposição à humidade e à luz solar direta.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Como funciona o pagamento?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">A reserva só fica concluída com o pagamento de 50% do valor da peça, por MB Way ou transferência bancária, com o comprovativo enviado por email ou WhatsApp no prazo de 48 horas. Os restantes 50% são pagos quando me envias as flores do teu bouquet, também por MB Way ou transferência bancária.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Qual é a política de cancelamento?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">A adjudicação implica a reserva da data e a afetação de recursos ao projeto. Em caso de cancelamento por iniciativa do cliente, os montantes já pagos não são passíveis de reembolso.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            O que acontece se o meu casamento for adiado ou cancelado?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Em caso de alteração da data, procuro encaixar a tua reserva noutra data, dependendo da minha disponibilidade. Em caso de cancelamento, ou caso não seja possível encontrar uma nova data, os montantes já pagos não são passíveis de reembolso.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Posso pedir alterações depois de ver uma proposta?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Sim. Depois de confirmarmos o estilo, as texturas, as cores e o design, envio-te uma proposta, e podes pedir alterações a essa proposta.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Faixa de transição -->
+  <section style="padding:0;">
+    <div class="img-placeholder" style="width:100%; height:280px; border-radius:0; background:linear-gradient(135deg,#D4C8B0,#B8A880);">
+      <span class="img-placeholder-label">Peças Personalizadas</span>
+    </div>
+  </section>
+
+  <section>
+    <div style="max-width:720px; margin:0 auto;">
+      <p class="faq-category" style="color:#D4A491;">Peças Personalizadas</p>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Posso escolher as flores para a minha peça personalizada?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Sim, trabalho contigo para perceber que flores preferes, que cores e que estilo pretendes. Apresento uma proposta com base nas flores disponíveis na minha coleção e, sempre que possível, cultivadas no meu jardim.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            As flores são sempre as mesmas ou variam?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">As flores dependem do stock existente naquele ano, por isso as peças podem ter flores diferentes.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Qual o prazo para peças personalizadas?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">O prazo varia consoante a complexidade da peça e a disponibilidade de flores da época. Em média, as peças personalizadas ficam prontas num prazo de 1 mês após a confirmação do pedido.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Como é feito o pagamento das peças personalizadas?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">O pagamento é feito no momento em que é feito o pedido, por MB Way ou transferência bancária.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Posso pedir alterações depois de ver uma proposta?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Sim. Depois de confirmarmos o estilo, as texturas, as cores e o design, envio-te uma proposta, e podes pedir alterações a essa proposta.</div>
+        </div>
+      </div>
+
+      <p class="faq-category" style="color:#CBB581;">Informações Gerais</p>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Faço envios para todo o país?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Envio para todo o Portugal continental. Os portes de envio não estão incluídos no preço das peças: o envio das flores do teu bouquet até mim fica a teu cargo, e a entrega da peça final por correio tem um custo fixo de 10€, pago no momento da entrega. Para envios para ilhas, entra em contacto para verificar disponibilidade e custo adicional.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Que tipo de moldura é utilizada?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="faq-a">Todas as molduras são fabricadas em madeira e incluem vidro normal.</div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:3rem; padding:2rem; background:var(--sand);">
+        <p class="section-body" style="margin-bottom:1.5rem;">Tem mais dúvidas? Entre em contacto connosco.</p>
+        <a href="https://wa.me/351910925135?text=Ol%C3%A1%21%20Tenho%20uma%20d%C3%BAvida" target="_blank" class="btn btn-forest">Enviar Mensagem</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeria de Peças -->
+  <section style="padding-top:0; padding-left:0; padding-right:0;">
+    <div id="faq-gallery-strip" class="fade-in" style="display:grid; grid-template-columns:repeat(6, 1fr); gap:0.5rem; width:100%; margin:0;">
+      <div class="img-placeholder" style="aspect-ratio:1; border-radius:0;"><img src="images/casamento/bouquet-extra-10.jpg" alt="Peça de flores prensadas" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div class="img-placeholder" style="aspect-ratio:1; border-radius:0;"><img src="images/casamento/bouquet-extra-11.jpg" alt="Peça de flores prensadas" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div class="img-placeholder" style="aspect-ratio:1; border-radius:0;"><img src="images/casamento/bouquet-extra-12.jpg" alt="Peça de flores prensadas" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div class="img-placeholder" style="aspect-ratio:1; border-radius:0;"><img src="images/casamento/bouquet-extra-13.jpg" alt="Peça de flores prensadas" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div class="img-placeholder" style="aspect-ratio:1; border-radius:0;"><img src="images/casamento/bouquet-extra-14.jpg" alt="Peça de flores prensadas" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div class="img-placeholder" style="aspect-ratio:1; border-radius:0;"><img src="images/casamento/bouquet-extra-15.jpg" alt="Peça de flores prensadas" style="width:100%; height:100%; object-fit:cover;"></div>
+    </div>
+  </section>
+
+  <footer style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; text-align:left; padding:3rem 5%;">
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Sobre</h4>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Informação</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a onclick="showPage('termos')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Termos e Condições</a>
+        <a onclick="showPage('privacidade')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Privacidade</a>
+        <a onclick="showPage('faq')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Envios</a>
+        <a onclick="showPage('sobre')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Sobre Nós</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Redes Sociais</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="https://www.instagram.com/casavinteumfloresprensadas" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">Instagram</a>
+        <a href="https://wa.me/351910925135" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Contactos</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="mailto:infocasavinteeum@gmail.com" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">infocasavinteeum@gmail.com</a>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">910 925 135</span>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">Santo Tirso, Porto</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: SOBRE
+═══════════════════════════════════════════ -->
+<div class="page" id="page-sobre">
+  <div style="padding-top:70px;">
+    <section class="sobre-main-grid" style="max-width:1100px; margin:0 auto; padding:6rem 5%; display:grid; grid-template-columns:1.3fr 1fr; gap:4rem; align-items:start;">
+      <div style="text-align:left;">
+        <div class="sobre-script" style="font-style:normal; font-size:2.2rem; margin-bottom:0.3rem;">Ana Marques</div>
+        <p class="section-label" style="margin-top:0;">Fundadora da Casa Vinte e Um</p>
+        <p class="section-body" style="margin-top:2.5rem;">Cresci com o zumbido das abelhas, rodeada da abundância de flores, frutas e legumes frescos do jardim da casa dos meus avós.</p>
+        <p class="section-body" style="margin-top:1.2rem;">Em 2020, eu, a minha mãe e a minha avó dedicámo-nos mais a fundo ao cultivo do nosso jardim. Foi por acaso, ao encontrar uns almanaques antigos com pétalas de rosa prensadas, que me surgiu a ideia de experimentar o mesmo processo com as flores que já tínhamos em casa. Procurava um passatempo calmo, mas ao mesmo tempo desafiante, e as flores prensadas encaixavam perfeitamente nessa ideia.</p>
+        <p class="section-body" style="margin-top:1.2rem;">Essa jornada começou dentro de livros, a prensar as primeiras flores entre páginas, até ter a minha primeira prensa própria. No início, era um passatempo: criava peças para oferecer e para mim mesma. O processo foi todo autodidata, por tentativa e erro com flores simples, a ver vídeos e a observar o trabalho de outras pessoas, evoluindo pouco a pouco para flores mais complexas e delicadas.</p>
+        <p class="section-body" style="margin-top:1.2rem;">Comecei a prensar as flores do nosso jardim, um cultivo caseiro feito com tempo e cuidado, e a transformá-las em peças.</p>
+      </div>
+      <div class="img-placeholder" style="aspect-ratio:3/4; position:sticky; top:90px;">
+        <img src="images/sobre/ana-jardim.jpg" alt="Ana no jardim" style="width:100%; height:100%; object-fit:cover; position:relative; z-index:1;">
+      </div>
+    </section>
+
+    <!-- Casa Vinte e Um -->
+    <section class="sobre-main-grid" style="max-width:1100px; margin:0 auto; padding:2rem 5% 6rem; display:grid; grid-template-columns:1fr 1.3fr; gap:4rem; align-items:start;">
+      <div class="img-placeholder" style="aspect-ratio:3/4;"><img src="images/jardim/jardim-3.jpg" alt="Jardim Casa Vinte e Um" style="width:100%; height:100%; object-fit:cover;"></div>
+      <div style="text-align:left;">
+        <h2 class="section-title" style="font-family:'Cardo', serif;">Casa Vinte e Um</h2>
+        <p class="section-body" style="margin-top:1.2rem;">Foi em 2023 que nasceu a Casa Vinte e Um, nome que vem do número da porta da nossa casa. Queria um nome acolhedor, e este soou-me bem desde o início.</p>
+        <p class="section-body" style="margin-top:1.2rem;">No verão de 2025, lancei o serviço de preservação de flores de casamento. Recebo os bouquets das noivas depois do grande dia e transformo-os em peças com opções de linho, vidro ou papel, sempre a pensar no gosto e na personalidade de cada casal, e a trazer a essência das flores para essa nova forma.</p>
+        <p class="section-body" style="margin-top:1.2rem;">Também crio peças personalizadas com flores da minha própria produção, pensadas para decorar casas, quartos de bebé e de criança, com nomes, iniciais ou motivos de animais, com escolha de cores e formato.</p>
+        <p class="section-body" style="margin-top:1.2rem;">O meu processo criativo começa por ouvir. Seja numa peça personalizada ou na preservação de um bouquet de noiva, procuro perceber a história por trás de cada pedido, o que a pessoa quer sentir ao olhar para a peça, e como a beleza pode traduzir essa emoção. Cada peça é intencional, pessoal, feita à medida, e guarda uma memória única.</p>
+        <p class="section-body" style="margin-top:1.2rem;">Gosto de pensar que ajudo a preservar sonhos: o sonho de um dia especial, de uma história de amor, transformado em algo que se pode ver e tocar para sempre. Criar é, para mim, tornar esses sonhos realidade.</p>
+        <p class="section-body" style="margin-top:1.2rem;">Com a Casa Vinte e Um, quero criar leveza, sonhos e memórias. Cada peça nasce de uma conversa, de ouvir verdadeiramente quem me procura, e é feita com afeto, para que cada pessoa se sinta acolhida, tal como o nome sugere.</p>
+      </div>
+    </section>
+  </div>
+  <footer style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; text-align:left; padding:3rem 5%;">
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Sobre</h4>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Informação</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a onclick="showPage('termos')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Termos e Condições</a>
+        <a onclick="showPage('privacidade')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Privacidade</a>
+        <a onclick="showPage('faq')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Envios</a>
+        <a onclick="showPage('sobre')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Sobre Nós</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Redes Sociais</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="https://www.instagram.com/casavinteumfloresprensadas" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">Instagram</a>
+        <a href="https://wa.me/351910925135" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Contactos</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="mailto:infocasavinteeum@gmail.com" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">infocasavinteeum@gmail.com</a>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">910 925 135</span>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">Santo Tirso, Porto</span>
+      </div>
+    </div>
+  </footer>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: LOJA
+═══════════════════════════════════════════ -->
+<div class="page" id="page-loja">
+  <div style="padding-top:70px;">
+    <section style="text-align:center; padding-top:5rem; padding-bottom:5rem;">
+      <div style="max-width:500px; margin:0 auto;">
+        <p class="section-body" style="color:var(--text-light);">Em construção</p>
+      </div>
+    </section>
+  </div>
+  <footer style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; text-align:left; padding:3rem 5%;">
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Sobre</h4>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Informação</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a onclick="showPage('termos')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Termos e Condições</a>
+        <a onclick="showPage('privacidade')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Privacidade</a>
+        <a onclick="showPage('faq')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Envios</a>
+        <a onclick="showPage('sobre')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Sobre Nós</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Redes Sociais</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="https://www.instagram.com/casavinteumfloresprensadas" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">Instagram</a>
+        <a href="https://wa.me/351910925135" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Contactos</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="mailto:infocasavinteeum@gmail.com" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">infocasavinteeum@gmail.com</a>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">910 925 135</span>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">Santo Tirso, Porto</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: TERMOS
+═══════════════════════════════════════════ -->
+<div class="page" id="page-termos">
+  <div style="padding-top:70px;">
+    <section style="max-width:720px; margin:0 auto; padding:4rem 5%;">
+      <h1 class="section-title">Termos e Condições</h1>
+      <div class="divider"></div>
+      <div style="margin-top:2rem; display:flex; flex-direction:column; gap:2rem;">
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Como reservar</h3>
+          <ul class="section-body" style="font-size:0.9rem; padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem;">Todos os pedidos de reserva ficam sujeitos a confirmação de disponibilidade.</li>
+            <li>Envie uma mensagem por WhatsApp ou redes sociais com a data do casamento e aguarde a nossa resposta a confirmar se há vaga nesse dia.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Confirmação da reserva (sinal)</h3>
+          <ul class="section-body" style="font-size:0.9rem; padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem;">A reserva só fica concluída com o pagamento de 50% do valor da peça escolhida, por MB Way ou transferência bancária.</li>
+            <li style="margin-bottom:0.5rem;">O comprovativo de pagamento deve ser enviado por email (infocasavinteeum@gmail.com) ou WhatsApp (910 925 135) no prazo de 48 horas.</li>
+            <li style="margin-bottom:0.5rem;">Se o pagamento e o comprovativo não forem enviados dentro desse prazo, a reserva fica sem efeito.</li>
+            <li>A confirmação da reserva só é considerada válida após a receção do pagamento e do respetivo comprovativo.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Pagamento final</h3>
+          <ul class="section-body" style="font-size:0.9rem; padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem;">Os restantes 50% são pagos no momento da entrega dos bouquets, por MB Way ou transferência bancária.</li>
+            <li>O comprovativo de pagamento deve ser enviado por email (infocasavinteeum@gmail.com) ou WhatsApp (910 925 135).</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Prazos</h3>
+          <ul class="section-body" style="font-size:0.9rem; padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem;">Vagas disponíveis de março a outubro para casamentos com flores frescas do ano em curso.</li>
+            <li>A peça acabada é entregue num prazo de 4 a 6 meses após a receção das flores. O possível atraso na entrega da peça final não dá direito a qualquer desconto ou reembolso.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Cancelamento</h3>
+          <ul class="section-body" style="font-size:0.9rem; padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem;">O serviço de preservação de flores de casamento é personalizado e implica não aceitar outros pedidos para a mesma data. Após a reserva da data, em caso de cancelamento do serviço não é possível solicitar o reembolso dos valores já pagos.</li>
+            <li>Em caso de alteração da data do casamento/evento, tentarei encaixar a tua reserva numa nova data — esta alteração fica sempre dependente da minha disponibilidade. Caso não seja possível fazer essa alteração, também não é possível reembolsar os valores já pagos.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Envio do bouquet (de ti para mim)</h3>
+          <ul class="section-body" style="font-size:0.9rem; padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem;">Entrega no prazo máximo de 2-3 dias após o evento, para prensar as flores ainda frescas.</li>
+            <li style="margin-bottom:0.5rem;">Duas formas de entrega: em mãos, em Santo Tirso (Sequeiró), ou por correio.</li>
+            <li style="margin-bottom:0.5rem;">Entrega em mãos: aguarda mensagem com morada, contactos e horário.</li>
+            <li style="margin-bottom:0.5rem;">Envio por correio: peça embalada conforme as indicações que partilho, enviada em correio urgente e frágil.</li>
+            <li style="margin-bottom:0.5rem;">Retira previamente qualquer fita ou adereço que queiras guardar.</li>
+            <li style="margin-bottom:0.5rem;">És responsável pelas condições em que as flores chegam — não me responsabilizo por atrasos, danos, extravios ou deterioração por mau acondicionamento/manuseamento.</li>
+            <li style="margin-bottom:0.5rem;">A qualidade do resultado final depende do estado em que as flores me chegam. Flores que cheguem muito murchas, danificadas ou mal acondicionadas podem condicionar o resultado final, sem que isso seja da minha responsabilidade.</li>
+            <li><strong>Portes de envio não incluídos no preço da peça.</strong></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Entrega da peça final (de mim para ti)</h3>
+          <ul class="section-body" style="font-size:0.9rem; padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem;">Duas formas de entrega: em mãos, em Santo Tirso (Sequeiró), ou por correio.</li>
+            <li style="margin-bottom:0.5rem;">Entrega em mãos: aguardas mensagem com morada, contactos e horário de recolha.</li>
+            <li style="margin-bottom:0.5rem;">Envio por correio: peça acondicionada e enviada por correio registado, com custo fixo de 10€ pago no final da entrega.</li>
+            <li style="margin-bottom:0.5rem;">Recebes código e informações de rastreio por mensagem ou email.</li>
+            <li style="margin-bottom:0.5rem;">Prazos de entrega são estimativas da transportadora, podem variar por razões fora do meu controlo.</li>
+            <li style="margin-bottom:0.5rem;">Não me responsabilizo por atrasos, danos ou extravios no transporte da peça final, mas ajudo a resolver se acontecer.</li>
+            <li>Em caso de perda ou dano: contacta-me de imediato; se a peça chegar danificada, envia fotos claras (caixa e peça) para eu poder reclamar junto da transportadora.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Mudanças de cor na prensa</h3>
+          <ul class="section-body" style="font-size:0.9rem; padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem;">As flores prensadas sofrem alterações naturais de cor ao longo do processo e com o tempo.</li>
+            <li style="margin-bottom:0.5rem;">Flores brancas podem amarelecer ligeiramente.</li>
+            <li>O resultado final é sempre único e não é possível garantir a cor exata da flor fresca original.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Cuidados com a peça</h3>
+          <ul class="section-body" style="font-size:0.9rem; padding-left:1.2rem;">
+            <li style="margin-bottom:0.5rem;">Evitar exposição direta ao sol ou a luz muito intensa — a luz acelera o desbotamento das cores.</li>
+            <li style="margin-bottom:0.5rem;">Não expor a ambientes húmidos, o que pode favorecer o aparecimento de bolor.</li>
+            <li style="margin-bottom:0.5rem;">Evitar colocar perto de fontes de calor (radiadores, lareiras).</li>
+            <li style="margin-bottom:0.5rem;">Não expor à água ou limpar com produtos húmidos — limpar apenas com um pano seco e macio ou pincel de cerdas suaves, se necessário.</li>
+            <li>Manusear com cuidado, sobretudo peças emolduradas com vidro.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">IVA</h3>
+          <p class="section-body" style="font-size:0.9rem;">Os valores apresentados estão isentos de IVA, ao abrigo do artigo 53.º do CIVA.</p>
+        </div>
+
+        <div style="margin-top:1rem; padding-top:2rem; border-top:1px solid var(--beige);">
+          <p class="section-body" style="font-size:0.9rem;">Se ainda tens dúvidas ou pretendes mais informações contacta-me pelas redes sociais @casavinteeumfloresprensadas ou WhatsApp (910 925 135).</p>
+          <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.3rem; color:var(--forest); margin-top:1.5rem;">Obrigada,</p>
+          <p style="font-size:0.9rem; color:var(--text-mid); margin-top:0.3rem;">Ana Marques</p>
+        </div>
+
+      </div>
+      <div style="margin-top:3rem;">
+        <button class="btn btn-gold" onclick="showPage('home')">← Voltar ao início</button>
+      </div>
+    </section>
+  </div>
+  <footer style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; text-align:left; padding:3rem 5%;">
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Sobre</h4>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Informação</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a onclick="showPage('termos')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Termos e Condições</a>
+        <a onclick="showPage('privacidade')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Privacidade</a>
+        <a onclick="showPage('faq')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Envios</a>
+        <a onclick="showPage('sobre')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Sobre Nós</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Redes Sociais</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="https://www.instagram.com/casavinteumfloresprensadas" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">Instagram</a>
+        <a href="https://wa.me/351910925135" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Contactos</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="mailto:infocasavinteeum@gmail.com" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">infocasavinteeum@gmail.com</a>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">910 925 135</span>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">Santo Tirso, Porto</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: PRIVACIDADE
+═══════════════════════════════════════════ -->
+<div class="page" id="page-privacidade">
+  <div style="padding-top:70px;">
+    <section style="max-width:720px; margin:0 auto; padding:4rem 5%;">
+      <h1 class="section-title">Política de Privacidade</h1>
+      <div class="divider"></div>
+      <div style="margin-top:2rem; display:flex; flex-direction:column; gap:2rem;">
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Que dados recolhemos</h3>
+          <p class="section-body" style="font-size:0.9rem;">Recolhemos apenas os dados que nos partilhas voluntariamente ao entrares em contacto por email, WhatsApp ou redes sociais — como o teu nome, contacto e informações sobre a tua encomenda ou reserva.</p>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Como usamos os teus dados</h3>
+          <p class="section-body" style="font-size:0.9rem;">Utilizamos os teus dados exclusivamente para gerir a tua encomenda ou reserva, comunicar contigo sobre o processo, e cumprir obrigações fiscais quando aplicável. Não vendemos nem partilhamos os teus dados com terceiros para fins de marketing.</p>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Fotografias e imagens</h3>
+          <p class="section-body" style="font-size:0.9rem;">Podemos pedir a tua autorização para fotografar peças criadas para ti, para uso no site ou redes sociais. Esta autorização é sempre pedida previamente e podes recusar ou retirar o consentimento a qualquer momento.</p>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif; color:var(--forest); font-size:1.2rem; margin-bottom:0.6rem;">Os teus direitos</h3>
+          <p class="section-body" style="font-size:0.9rem;">Tens o direito de aceder, corrigir ou solicitar a eliminação dos teus dados a qualquer momento. Para isso, contacta-nos por email ou WhatsApp.</p>
+        </div>
+
+        <div style="margin-top:1rem; padding-top:2rem; border-top:1px solid var(--beige);">
+          <p class="section-body" style="font-size:0.9rem;">Para qualquer dúvida sobre esta política, contacta-nos pelo email infocasavinteeum@gmail.com ou WhatsApp (910 925 135).</p>
+        </div>
+
+      </div>
+      <div style="margin-top:3rem;">
+        <button class="btn btn-gold" onclick="showPage('home')">← Voltar ao início</button>
+      </div>
+    </section>
+  </div>
+  <footer style="display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; text-align:left; padding:3rem 5%;">
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Sobre</h4>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Informação</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a onclick="showPage('termos')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Termos e Condições</a>
+        <a onclick="showPage('privacidade')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Privacidade</a>
+        <a onclick="showPage('faq')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Envios</a>
+        <a onclick="showPage('sobre')" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none; cursor:pointer;">Sobre Nós</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Redes Sociais</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="https://www.instagram.com/casavinteumfloresprensadas" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">Instagram</a>
+        <a href="https://wa.me/351910925135" target="_blank" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Cormorant Garamond',serif; color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem; letter-spacing:0.05em; text-transform:uppercase;">Contactos</h4>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <a href="mailto:infocasavinteeum@gmail.com" style="color:rgba(255,255,255,0.6); font-size:0.85rem; text-decoration:none;">infocasavinteeum@gmail.com</a>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">910 925 135</span>
+        <span style="color:rgba(255,255,255,0.6); font-size:0.85rem;">Santo Tirso, Porto</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // ── PAGE ROUTING ──
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + name);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+    // Update nav active state
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const navEl = document.getElementById('nav-' + name);
+    if (navEl) navEl.classList.add('active');
+    // Trigger fade-ins
+    setTimeout(observeFadeIns, 100);
+  }
+
+  // ── NAVEGAR PARA PREÇOS ──
+  function goToPricing() {
+    showPage('casamento');
+    setTimeout(() => {
+      const el = document.getElementById('precos');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
+  }
+
+  // ── MOBILE MENU ──
+  function toggleMenu() {
+    document.getElementById('nav-mobile').classList.toggle('open');
+  }
+
+  // ── TESTIMONIALS CAROUSEL ──
+  const testimonials = [
+    { text: '"Quero apenas dizer que estamos maravilhados com a peça. Ainda é mais bonita ao vivo. Parabéns pelo trabalho! Será sempre muito especial para nós."', author: 'Alexandra e Tomás' },
+    { text: '"Adoramos a peça estamos mesmo muito felizes. Obrigada pela mensagem personalizada e por todos os pormenores do embrulho… ficamos muito felizes! Adoramos todo o processo!"', author: 'Mariana e James' },
+    { text: '"Não tive ainda oportunidade de vir até aqui, mas quero dizer-lhe que já recebi a encomenda. Que chegou em perfeito estado e está linda. Agradecida imenso e cuidou com todas as flores bem guardadas…"', author: 'Joana C.' },
+    { text: '"Ficou lindo, lindo, lindo. Mais que lindo. Perfeito. Elegante e sofisticado... Tive uma sorte gigantesca com todos os nossos prestadores e a Ana também foi uma excelente surpresa... E espero que esta peça que nos fez também a faça crescer mais e mais, porque é só fruto da sua dedicação, profissionalismo, gosto e sensibilidade."', author: 'Susana e Rafael' },
+    { text: '"Olá Ana! Sim, está lindíssima. Gostamos muito e chegou tudo bem. Ontem não tive muito tempo para lhe dar feedback mas ficou muito linda! Adoramos. Recomendo sem dúvidas o seu trabalho a futuras noivas que conheça."', author: 'Bárbara' },
+    { text: '"A melhor escolha sem dúvida! Uma agradável surpresa e trabalho incrível. Obrigada Ana."', author: 'Ana e Ricardo' },
+    { text: '"Está mesmo lindo, e fico com mais uma lembrança do nosso grande dia. Obrigada pelo teu lindo trabalho, pelo carinho, pela atenção ao detalhe. Só pessoas especiais criam coisas tão especiais e ainda nos fazem sentir mais especiais."', author: 'Denise e César' }
+  ];
+  let currentTestimonial = 0;
+
+  function renderTestimonial() {
+    const textEl = document.getElementById('testimonial-text');
+    const authorEl = document.getElementById('testimonial-author');
+    const dotsEl = document.getElementById('testimonial-dots');
+    if (!textEl || !authorEl || !dotsEl) return;
+    textEl.textContent = testimonials[currentTestimonial].text;
+    authorEl.textContent = testimonials[currentTestimonial].author;
+    dotsEl.innerHTML = testimonials.map((_, i) =>
+      `<span onclick="goToTestimonial(${i})" style="width:8px; height:8px; border-radius:50%; cursor:pointer; background:${i === currentTestimonial ? 'var(--gold)' : 'var(--beige)'}; transition:background 0.2s;"></span>`
+    ).join('');
+  }
+
+  function changeTestimonial(direction) {
+    currentTestimonial = (currentTestimonial + direction + testimonials.length) % testimonials.length;
+    renderTestimonial();
+  }
+
+  function goToTestimonial(index) {
+    currentTestimonial = index;
+    renderTestimonial();
+  }
+
+  // ── HIGHLIGHTS CAROUSEL ──
+  function scrollHighlights(direction) {
+    const track = document.getElementById('highlights-track');
+    if (!track) return;
+    track.scrollBy({ left: direction * 320, behavior: 'smooth' });
+  }
+
+  // ── FAQ ACCORDION ──
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── SCROLL FADE-IN ──
+  function observeFadeIns() {
+    const els = document.querySelectorAll('.page.active .fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(el => {
+      if (!el.classList.contains('visible')) observer.observe(el);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    observeFadeIns();
+    renderTestimonial();
+    // Close mobile menu on outside click
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('nav-mobile');
+      const burger = document.querySelector('.nav-hamburger');
+      if (!menu.contains(e.target) && !burger.contains(e.target)) {
+        menu.classList.remove('open');
+      }
+    });
+  });
+</script>
+</body>
+</html>
